@@ -3,7 +3,7 @@ import Github from './SVGS/Github';
 
 const Footer = () => {
   return (
-    <div className="mt-10 bg-[#161b22] w-full lg:px-[5%] px-[10%] py-2 space-y-4 pb-16">
+    <div className="bg-[#0d1117] w-full lg:px-[5%] px-[6%] md:px-[10%] py-2 space-y-4 pb-16">
       <div className="h-[0.3px] shrink-0 bg-gray-600 lg:mb-8"></div>
       <div className="lg:flex lg:gap-[60px] lg:justify-start space-y-4 lg:items-center lg:space-y-0">
         <div className="text-[#58a6ff] flex flex-wrap items-center justify-center space-x-[16px] lg:space-x-[30px] lg:grid-flow-col space-y-[1px] text-[12px]">

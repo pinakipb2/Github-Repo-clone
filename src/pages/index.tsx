@@ -11,7 +11,7 @@ import ReadmeMD from '../components/ReadmeMD';
 
 const Home = ({ source }: { source?: any }) => {
   return (
-    <div className="flex flex-col w-full h-full font-segoe-UI">
+    <div className="bg-[#0d1117] flex flex-col w-full h-full font-segoe-UI">
       <Navbar />
       <Info />
       <ReadmeMD>

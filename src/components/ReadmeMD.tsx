@@ -37,7 +37,7 @@ const ReadmeMD = ({ children }: { children: JSX.Element }) => {
         </div>
       </div>
       <div className="p-8">
-        <div className={styles['markdown-body']}>{children}</div>
+        <div className={`text-sm md:text-base ${styles['markdown-body']}`}>{children}</div>
       </div>
       <div className="h-[1px] shrink-0 bg-gray-600"></div>
     </div>

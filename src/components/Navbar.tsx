@@ -36,7 +36,7 @@ const Navbar = () => {
   ];
   return (
     <>
-      <div className="relative lg:hidden h-[65px] w-full bg-[#161B22] flex text-white items-center justify-between px-[5%]">
+      <div className="relative lg:hidden h-[65px] w-full bg-[#161B22] flex text-white items-center justify-between px-[4%] sm:px-[6%]">
         <button className="text-sm py-[4px] px-[8px] rounded-md border border-white/20 bg-transparent shrink-0 outline-0">Sign up</button>
         <div className="absolute top-1/2 left-1/2 translate-x-[-50%] translate-y-[-50%]">
           <Link href="/">

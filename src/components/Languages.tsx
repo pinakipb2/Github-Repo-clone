@@ -2,7 +2,7 @@ import { BsCircleFill } from 'react-icons/bs';
 
 const Languages = () => {
   return (
-    <div className="bg-[#0d1117] w-full text-[#f0f6fc] px-[15px] text-[16px] font-[600] py-[24px] flex flex-col space-y-3.5">
+    <div className="bg-[#161b22] sm:bg-[#0d1117] w-full text-[#f0f6fc] px-[15px] text-[16px] font-[600] py-[24px] flex flex-col space-y-3.5">
       <span>Languages</span>
       <div className="flex flex-col items-start space-y-2">
         <div className="h-[8px] w-full shrink-0 flex divide-x-2 divide-gray-700">

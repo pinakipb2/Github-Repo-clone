@@ -25,7 +25,7 @@ const List = ({ className }: { className: string }) => {
 const ReadmeMD = ({ children }: { children: JSX.Element }) => {
   return (
     <div className="flex flex-col w-full bg-[#161b22] sm:bg-[#0d1117] sm:px-[15px]">
-      <div className="flex flex-col shrink-0 h-[50px] sticky -top-1 border-y sm:border sm:rounded-t-[6px] border-gray-600 bg-[#161b22] sm:bg-[#0d1117]">
+      <div className="flex flex-col shrink-0 h-[50px] sticky -top-1 border-y sm:border sm:rounded-t-[6px] border-gray-700 bg-[#161b22] sm:bg-[#0d1117]">
         <div className="p-[8px] px-[2%] flex flex-row items-center justify-start shrink-0">
           <div className="flex text-white items-center">
             <List className="h-[30px] w-[30px] p-[7px] fill-[#8b949e] mr-2 hover:cursor-pointer rounded-[6px] hover:bg-[#30363d]" />
@@ -36,7 +36,7 @@ const ReadmeMD = ({ children }: { children: JSX.Element }) => {
           </div> */}
         </div>
       </div>
-      <div className="p-8 sm:border-x sm:border-b sm:rounded-b-[6px] sm:border-gray-600">
+      <div className="p-8 sm:border-x sm:border-b sm:rounded-b-[6px] sm:border-gray-700">
         <div className={`text-sm sm:text-base bg-[#161b22] sm:bg-[#0d1117] ${styles['markdown-body']}`}>{children}</div>
       </div>
       <div className="h-[1px] shrink-0 bg-gray-600 sm:hidden"></div>

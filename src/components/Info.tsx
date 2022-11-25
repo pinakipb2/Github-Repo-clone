@@ -90,7 +90,7 @@ const Info = () => {
       {/* buttons */}
       <div className="flex w-full text-[#c9d1d9] text-xs font-semibold gap-x-2">
         <div className="flex items-center justify-center w-1/2">
-          <button className="flex items-center gap-x-2 w-full bg-[#21262d] justify-center rounded-[6px] border select-none px-[12px] py-[5px] border-gray-700 rounded-r-none hover:border-gray-400 hover:bg-[#30363d]">
+          <button className="flex items-center gap-x-3 w-full bg-[#21262d] justify-center rounded-[6px] border select-none px-[12px] py-[5px] border-gray-700 rounded-r-none hover:border-gray-400 hover:bg-[#30363d]">
             <Star className="fill-[#8b949e] shrink-0" />
             Star
           </button>
@@ -98,7 +98,7 @@ const Info = () => {
             className="flex items-center gap-x-2 w-[30px] bg-[#21262d] justify-center rounded-[6px] border-y border-r select-none px-[12px] py-[5px] border-gray-700 rounded-l-none hover:cursor-default"
             disabled
           >
-            <DropDown className="fill-[#8b949e] shrink-0" />
+            <DropDown className="fill-gray-600 shrink-0" />
           </button>
         </div>
         <button className="flex items-center gap-x-2 w-1/2 bg-[#21262d] justify-center rounded-[6px] border select-none px-[12px] py-[5px] border-gray-700 hover:border-gray-400 hover:bg-[#30363d]">

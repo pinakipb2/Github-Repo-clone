@@ -1,7 +1,7 @@
+import clsx from 'clsx';
 import cuid from 'cuid';
 import Image from 'next/image';
 import { useState } from 'react';
-import clsx from 'clsx';
 
 const Branch = ({ className }: { className: string }) => {
   return (
@@ -149,21 +149,21 @@ const Code = () => {
           main
           <DropDown className="h-[18px] w-[18px] -ml-[4px] fill-[#8b949e] shrink-0" />
         </button>
-        <button className="flex items-center gap-x-2 w-fit bg-[#21262d] justify-center rounded-[6px] border select-none px-[18px] py-[5px] border-gray-700 hover:border-gray-400 hover:bg-[#30363d]">
+        <button className="flex items-center gap-x-2 w-fit bg-[#21262d] justify-center rounded-[6px] border select-none px-[18px] py-[5px] border-gray-700 hover:border-gray-400 hover:bg-[#30363d] shrink-0">
           Go to file
         </button>
       </div>
       <div className="flex flex-col text-sm border rounded-[6px] border-gray-700">
-        <div className="flex justify-between p-[16px] font-semibold border-b border-gray-700 sm:bg-[#161b22]">
+        <div className="flex justify-between p-[16px] font-semibold border-b border-gray-700 sm:bg-[#161b22] rounded-t-[6px]">
           <div className="flex items-center gap-x-2">
             <Image src="/avatar.png" alt="pinakipb2" width="600" height="600" className="rounded-full w-[24px] h-[24px] hover:cursor-pointer" />
-            <div className="hover:underline hover:cursor-pointer">pinakipb2</div>
+            <div className="hover:underline hover:cursor-pointer truncate">pinakipb2</div>
             <div className="hover:underline hover:cursor-pointer font-normal hover:text-[#58a6ff] hidden sm:block">Added channel names</div>
             <div className="hover:cursor-pointer bg-[#6E768166] hover:bg-[#388BFD66] rounded-[1px] px-1.5 text-xs h-[12px] w-[20px] text-center flex items-center justify-center pb-1">...</div>
           </div>
           <div className="flex items-center gap-x-4">
             <Check className="fill-[#3fb950] hover:cursor-pointer shrink-0" />
-            <div className="font-normal text-[#8b949e] hover:text-[#58a6ff] hover:underline hover:cursor-pointer -ml-[6px]">6 days ago</div>
+            <div className="font-normal text-[#8b949e] hover:text-[#58a6ff] hover:underline hover:cursor-pointer -ml-[6px] shrink-0">6 days ago</div>
             <div className="flex items-center gap-x-1 group hover:cursor-pointer">
               <History className="fill-[#ffffff] group-hover:fill-[#58a6ff] hover:cursor-pointer shrink-0" />
               <span className="group-hover:text-[#58a6ff] hidden sm:block">14</span>
@@ -190,7 +190,7 @@ const Code = () => {
                   )}
                   <span className="hover:text-[#58a6ff] hover:underline hover:cursor-pointer">{file.name}</span>
                 </div>
-                <div className="pr-[16px]">{file.updated}</div>
+                <div className="pr-[16px] shrink-0">{file.updated}</div>
               </div>
             ))}
           </div>

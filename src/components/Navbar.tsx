@@ -1,3 +1,4 @@
+import clsx from 'clsx';
 import cuid from 'cuid';
 import Link from 'next/link';
 import { useState } from 'react';
@@ -69,7 +70,7 @@ const Navbar = () => {
               onFocus={() => setIsSearchFocus(true)}
               onBlur={() => setIsSearchFocus(false)}
             />
-            <div className={`${isSearchFocus && 'hidden'} absolute right-[10px] text-[0.7rem] border-[1.5px] border-white/20 px-[5.9px] py-[0.8px] rounded-[3px] text-white/60`}>/</div>
+            <div className={clsx([isSearchFocus && 'hidden'], ' absolute right-[10px] text-[0.7rem] border-[1.5px] border-white/20 px-[5.9px] py-[0.8px] rounded-[3px] text-white/60')}>/</div>
           </div>
           <button className="py-[4px] px-[8px] bg-transparent shrink-0 outline-0 hover:text-white/80">Sign in</button>
           <button className="py-[4px] h-full px-[8px] rounded-md border border-white/20 bg-transparent shrink-0 outline-0 hover:text-white/80">Sign up</button>

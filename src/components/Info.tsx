@@ -1,3 +1,5 @@
+import Link from 'next/link';
+
 const Repo = ({ className }: { className: string }) => {
   return (
     <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" className={className}>
@@ -9,7 +11,7 @@ const Repo = ({ className }: { className: string }) => {
   );
 };
 
-const Link = ({ className }: { className: string }) => {
+const Chain = ({ className }: { className: string }) => {
   return (
     <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" className={className}>
       <path
@@ -64,20 +66,26 @@ const DropDown = ({ className }: { className: string }) => {
 
 const Info = () => {
   return (
-    <div className="bg-[#0d1117] w-full flex flex-col px-[15px] py-[15px] gap-y-3">
-      <div className="flex items-center gap-x-2 text-lg">
+    <div className="bg-[#0d1117] w-full flex flex-col md:flex-row px-[15px] md:px-[25px] xl:px-[30px] py-[15px] gap-y-3">
+      <div className="flex items-center gap-x-2 text-lg md:text-xl">
         <Repo className="fill-[#8b949e] shrink-0" />
-        <span className="text-[#58a6ff] hover:underline hover:cursor-pointer">pinakipb2</span>
+        <Link href="https://github.com/pinakipb2" rel="noopener noreferrer" target="_blank" className="shrink-0">
+          <span className="text-[#58a6ff] hover:underline hover:cursor-pointer">pinakipb2</span>
+        </Link>
         <span className="text-[#8b949e] -ml-[3px] -mr-[3px]">/</span>
-        <span className="text-[#58a6ff] hover:underline hover:cursor-pointer font-semibold shrink-0">YT-clone</span>
-        <div className="border rounded-xl text-xs text-[#8b949e] border-[#30363d] px-2 pb-[1px]">Public</div>
+        <Link href="https://github.com/pinakipb2/YT-clone" rel="noopener noreferrer" target="_blank" className="shrink-0">
+          <span className="text-[#58a6ff] hover:underline hover:cursor-pointer font-semibold shrink-0">YT-clone</span>
+        </Link>
+        <div className="border rounded-xl text-xs text-[#8b949e] border-[#30363d] px-2 pb-[1px] font-semibold">Public</div>
       </div>
-      <div className="text-[#f0f6fc] text-[16px] mb-2">NextJS, Tailwind</div>
-      <div className="flex items-center gap-x-2 group w-fit">
-        <Link className="fill-[#8b949e] shrink-0 group-hover:fill-[#58a6ff]" />
-        <span className="text-[#58a6ff] hover:underline hover:cursor-pointer font-semibold text-sm shrink-0">yt-clone-pinakipb2.vercel.app</span>
+      <div className="text-[#f0f6fc] text-[16px] mb-2 md:hidden">NextJS, Tailwind</div>
+      <div className="flex items-center gap-x-2 group w-auto md:hidden">
+        <Chain className="fill-[#8b949e] shrink-0 w-fit group-hover:fill-[#58a6ff]" />
+        <Link href="https://yt-clone-pinakipb2.vercel.app" rel="noopener noreferrer" target="_blank" className="shrink-0">
+          <span className="text-[#58a6ff] hover:underline hover:cursor-pointer font-semibold text-sm shrink-0">yt-clone-pinakipb2.vercel.app</span>
+        </Link>
       </div>
-      <div className="flex gap-x-5">
+      <div className="flex gap-x-5 md:hidden">
         <div className="flex text-[#8b949e] group hover:text-[#58a6ff] hover:cursor-pointer items-center gap-x-2 text-sm">
           <Star className="fill-[#8b949e] group-hover:fill-[#58a6ff] shrink-0" />
           <div className="first-letter:font-semibold shrink-0">0 stars</div>
@@ -87,12 +95,12 @@ const Info = () => {
           <div className="first-letter:font-semibold shrink-0">0 forks</div>
         </div>
       </div>
-      {/* buttons */}
-      <div className="flex w-full text-[#c9d1d9] text-xs font-semibold gap-x-2">
-        <div className="flex items-center justify-center w-1/2">
+      <div className="flex w-full text-[#c9d1d9] text-xs font-semibold gap-x-2 md:justify-end">
+        <div className="flex items-center justify-center w-1/2 md:w-fit md:order-last">
           <button className="flex items-center gap-x-3 w-full bg-[#21262d] justify-center rounded-[6px] border select-none px-[12px] py-[5px] border-gray-700 rounded-r-none hover:border-gray-400 hover:bg-[#30363d]">
             <Star className="fill-[#8b949e] shrink-0" />
             Star
+            <span className="hidden md:block bg-[#30363d] rounded-[2em] w-[16px] h-[16px] text-center">0</span>
           </button>
           <button
             className="flex items-center gap-x-2 w-[30px] bg-[#21262d] justify-center rounded-[6px] border-y border-r select-none px-[12px] py-[5px] border-gray-700 rounded-l-none hover:cursor-default"
@@ -101,7 +109,12 @@ const Info = () => {
             <DropDown className="fill-gray-600 shrink-0" />
           </button>
         </div>
-        <button className="flex items-center gap-x-2 w-1/2 bg-[#21262d] justify-center rounded-[6px] border select-none px-[12px] py-[5px] border-gray-700 hover:border-gray-400 hover:bg-[#30363d]">
+        <button className="hidden md:flex items-center gap-x-2 w-1/2 bg-[#21262d] justify-center rounded-[6px] border select-none px-[12px] py-[5px] border-gray-700 hover:border-gray-400 hover:bg-[#30363d] md:w-fit">
+          <Fork className="fill-[#8b949e] shrink-0" />
+          Fork
+          <span className="hidden md:block bg-[#30363d] rounded-[2em] w-[16px] h-[16px] text-center">0</span>
+        </button>
+        <button className="flex items-center gap-x-2 w-1/2 bg-[#21262d] justify-center rounded-[6px] border select-none px-[12px] py-[5px] border-gray-700 hover:border-gray-400 hover:bg-[#30363d] md:order-first md:w-fit">
           <Notification className="fill-[#8b949e] shrink-0" />
           Notifications
         </button>

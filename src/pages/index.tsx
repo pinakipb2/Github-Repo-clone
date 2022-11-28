@@ -10,6 +10,7 @@ import Languages from '../components/Languages';
 import Navbar from '../components/Navbar';
 import ReadmeMD from '../components/ReadmeMD';
 import RepoNav from '../components/RepoNav';
+import Sidebar from '../components/Sidebar';
 
 const Home = ({ source }: { source?: any }) => {
   return (
@@ -17,13 +18,22 @@ const Home = ({ source }: { source?: any }) => {
       <Navbar />
       <Info />
       <RepoNav />
-      <Code />
-      <ReadmeMD>
-        <MDXRemote {...source} components={{ Test: <></> }} />
-      </ReadmeMD>
-      <Environments />
-      <div className="h-[1px] shrink-0 bg-gray-600"></div>
-      <Languages />
+      <div className="flex flex-row w-full h-full xl:px-[65px] xl:pt-[10px]">
+        <div className="flex flex-col w-full h-full">
+          <Code />
+          <ReadmeMD>
+            <MDXRemote {...source} components={{ Test: <></> }} />
+          </ReadmeMD>
+        </div>
+        <Sidebar />
+      </div>
+      <div className="md:hidden">
+        <Environments />
+      </div>
+      <div className="h-[1px] shrink-0 bg-gray-600 md:hidden"></div>
+      <div className="md:hidden">
+        <Languages />
+      </div>
       <Footer />
     </div>
   );

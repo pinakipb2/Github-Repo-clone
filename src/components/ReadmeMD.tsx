@@ -24,10 +24,10 @@ const List = ({ className }: { className: string }) => {
 
 const ReadmeMD = ({ children }: { children: JSX.Element }) => {
   return (
-    <div className="flex flex-col w-full bg-[#161b22] sm:bg-[#0d1117] sm:px-[15px]">
+    <div className="flex flex-col w-full bg-[#161b22] sm:bg-[#0d1117] sm:px-[15px] md:px-[25px]">
       <div className="flex flex-col shrink-0 h-[50px] sticky -top-1 border-y sm:border sm:rounded-t-[6px] border-gray-700 bg-[#161b22] sm:bg-[#0d1117]">
         <div className="p-[8px] px-[2%] flex flex-row items-center justify-start shrink-0">
-          <div className="flex text-white items-center">
+          <div className="flex items-center text-white">
             <List className="h-[30px] w-[30px] p-[7px] fill-[#8b949e] mr-2 hover:cursor-pointer rounded-[6px] hover:bg-[#30363d]" />
             <span className="text-[#f0f6fc] text-[14px] font-[600] hover:underline hover:cursor-pointer hover:text-[#58a6ff]">README.md</span>
           </div>

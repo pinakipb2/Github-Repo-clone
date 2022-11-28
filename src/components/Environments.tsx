@@ -11,10 +11,10 @@ const Prod = ({ className }: { className: string }) => {
 
 const Environments = () => {
   return (
-    <div className="bg-[#161b22] sm:bg-[#0d1117] w-full text-[#f0f6fc] px-[15px] text-[16px] font-[600] py-[24px] flex flex-col space-y-3.5">
-      <div className="flex space-x-2 items-center">
+    <div className="bg-[#161b22] sm:bg-[#0d1117] w-full text-[#f0f6fc] px-[15px] text-[16px] font-[600] py-[24px] flex flex-col space-y-3.5 md:pr-[25px] md:pl-0">
+      <div className="flex items-center space-x-2">
         <span className="hover:text-[#58a6ff] hover:cursor-pointer">Environments</span>
-        <div className="bg-[#484f58] rounded-full text-[10px] flex items-center justify-center pb-[1px] w-[14px] h-[14px] text-center">1</div>
+        <div className="bg-[#484f58] rounded-full text-[10px] flex items-center justify-center w-[14px] h-[14px] text-center">1</div>
       </div>
       <div className="flex items-center space-x-4">
         <Prod className="fill-[#f0f6fc] shrink-0" />

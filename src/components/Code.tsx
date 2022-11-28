@@ -1,7 +1,7 @@
 import clsx from 'clsx';
 import cuid from 'cuid';
 import Image from 'next/image';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 const Branch = ({ className }: { className: string }) => {
   return (
@@ -60,8 +60,70 @@ const File = ({ className }: { className: string }) => {
   );
 };
 
+const Message = ({ className }: { className: string }) => {
+  return (
+    <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" className={className}>
+      <path
+        fillRule="evenodd"
+        d="M2.75 2.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h2a.75.75 0 01.75.75v2.19l2.72-2.72a.75.75 0 01.53-.22h4.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25H2.75zM1 2.75C1 1.784 1.784 1 2.75 1h10.5c.966 0 1.75.784 1.75 1.75v7.5A1.75 1.75 0 0113.25 12H9.06l-2.573 2.573A1.457 1.457 0 014 13.543V12H2.75A1.75 1.75 0 011 10.25v-7.5z"
+      ></path>
+    </svg>
+  );
+};
+
+const Tags = ({ className }: { className: string }) => {
+  return (
+    <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" className={className}>
+      <path
+        fillRule="evenodd"
+        d="M2.5 7.775V2.75a.25.25 0 01.25-.25h5.025a.25.25 0 01.177.073l6.25 6.25a.25.25 0 010 .354l-5.025 5.025a.25.25 0 01-.354 0l-6.25-6.25a.25.25 0 01-.073-.177zm-1.5 0V2.75C1 1.784 1.784 1 2.75 1h5.025c.464 0 .91.184 1.238.513l6.25 6.25a1.75 1.75 0 010 2.474l-5.026 5.026a1.75 1.75 0 01-2.474 0l-6.25-6.25A1.75 1.75 0 011 7.775zM6 5a1 1 0 100 2 1 1 0 000-2z"
+      ></path>
+    </svg>
+  );
+};
+
+// Define general type for useWindowSize hook, which includes width and height
+interface Size {
+  width: number | undefined;
+  height: number | undefined;
+}
+
+// Hook
+function useWindowSize(): boolean {
+  // Initialize state with undefined width/height so server and client renders match
+  // Learn more here: https://joshwcomeau.com/react/the-perils-of-rehydration/
+  const [windowSize, setWindowSize] = useState<Size>({
+    width: undefined,
+    height: undefined,
+  });
+  useEffect(() => {
+    // Handler to call on window resize
+    function handleResize() {
+      // Set window width/height to state
+      setWindowSize({
+        width: window.innerWidth,
+        height: window.innerHeight,
+      });
+    }
+    // Add event listener
+    window.addEventListener('resize', handleResize);
+    // Call handler right away so state gets updated with initial window size
+    handleResize();
+    // Remove event listener on cleanup
+    return () => window.removeEventListener('resize', handleResize);
+  }, []); // Empty array ensures that effect is only run on mount
+  // return windowSize;
+  // true for greater than md
+  return Number(windowSize.width) > 768 - 1;
+}
+
 const Code = () => {
+  const size: boolean = useWindowSize();
+  useEffect(() => {
+    setShowRepoCode(size);
+  }, [size]);
   const [showRepoCode, setShowRepoCode] = useState<boolean>(false);
+
   const repoCode = [
     {
       id: cuid(),
@@ -142,31 +204,55 @@ const Code = () => {
     },
   ];
   return (
-    <div className="bg-[#161b22] sm:bg-[#0d1117] w-full text-[#f0f6fc] px-[15px] py-[16px] flex flex-col gap-y-3">
+    <div className="bg-[#161b22] sm:bg-[#0d1117] w-full text-[#f0f6fc] px-[15px] md:px-[25px] py-[16px] flex flex-col gap-y-3">
       <div className="flex justify-between items-center w-full text-[#c9d1d9] text-sm font-semibold">
-        <button className="flex items-center gap-x-2 w-fit bg-[#21262d] justify-center rounded-[6px] border select-none px-[12px] py-[5px] border-gray-700 hover:border-gray-400 hover:bg-[#30363d]">
-          <Branch className="fill-[#8b949e] shrink-0" />
-          main
-          <DropDown className="h-[18px] w-[18px] -ml-[4px] fill-[#8b949e] shrink-0" />
-        </button>
-        <button className="flex items-center gap-x-2 w-fit bg-[#21262d] justify-center rounded-[6px] border select-none px-[18px] py-[5px] border-gray-700 hover:border-gray-400 hover:bg-[#30363d] shrink-0">
-          Go to file
-        </button>
+        <div className="flex gap-x-5">
+          <button className="flex items-center gap-x-2 w-fit bg-[#21262d] justify-center rounded-[6px] border select-none px-[12px] py-[5px] border-gray-700 hover:border-gray-400 hover:bg-[#30363d]">
+            <Branch className="fill-[#8b949e] shrink-0" />
+            main
+            <DropDown className="h-[18px] w-[18px] -ml-[4px] fill-[#8b949e] shrink-0" />
+          </button>
+          <div className="hidden lg:flex items-center group gap-x-1 font-normal">
+            <Branch className="fill-white shrink-0 group-hover:fill-[#58a6ff] group-hover:cursor-pointer" />
+            <span className="group-hover:text-[#58a6ff] group-hover:cursor-pointer">1</span>
+            <span className="text-[#8b949e] group-hover:text-[#58a6ff] group-hover:cursor-pointer">branch</span>
+          </div>
+          <div className="hidden lg:flex items-center group gap-x-1 font-normal">
+            <Tags className="fill-white shrink-0 group-hover:fill-[#58a6ff] group-hover:cursor-pointer" />
+            <span className="group-hover:text-[#58a6ff] group-hover:cursor-pointer">0</span>
+            <span className="text-[#8b949e] group-hover:text-[#58a6ff] group-hover:cursor-pointer">tags</span>
+          </div>
+        </div>
+        <div className="flex gap-x-2">
+          <button className="flex items-center gap-x-2 w-fit bg-[#21262d] justify-center rounded-[6px] border select-none px-[18px] py-[5px] border-gray-700 hover:border-gray-400 hover:bg-[#30363d] shrink-0">
+            Go to file
+          </button>
+          <button className="hidden md:flex items-center gap-x-1 w-fit bg-[#238636] justify-center rounded-[6px] select-none pl-[15px] pr-[10px] py-[5px] hover:bg-[#2ea043] shrink-0 text-white">
+            Code
+            <DropDown className="h-[18px] w-[18px] -ml-[4px] fill-white shrink-0" />
+          </button>
+        </div>
       </div>
       <div className="flex flex-col text-sm border rounded-[6px] border-gray-700">
         <div className="flex justify-between p-[16px] font-semibold border-b border-gray-700 sm:bg-[#161b22] rounded-t-[6px]">
           <div className="flex items-center gap-x-2">
             <Image src="/avatar.png" alt="pinakipb2" width="600" height="600" className="rounded-full w-[24px] h-[24px] hover:cursor-pointer" />
-            <div className="hover:underline hover:cursor-pointer truncate">pinakipb2</div>
-            <div className="hover:underline hover:cursor-pointer font-normal hover:text-[#58a6ff] hidden sm:block">Added channel names</div>
+            <div className="truncate hover:underline hover:cursor-pointer">pinakipb2</div>
+            <div className="hover:underline hover:cursor-pointer font-normal hover:text-[#58a6ff] hidden sm:block shrink-0">Added channel names</div>
             <div className="hover:cursor-pointer bg-[#6E768166] hover:bg-[#388BFD66] rounded-[1px] px-1.5 text-xs h-[12px] w-[20px] text-center flex items-center justify-center pb-1">...</div>
           </div>
           <div className="flex items-center gap-x-4">
+            <div className="hidden lg:flex items-center font-normal gap-x-1 group">
+              <Message className="fill-white shrink-0 group-hover:fill-[#58a6ff] group-hover:cursor-pointer" />
+              <span className="group-hover:text-[#58a6ff] group-hover:cursor-pointer pb-1">1</span>
+            </div>
             <Check className="fill-[#3fb950] hover:cursor-pointer shrink-0" />
+            <div className="font-normal text-xs text-[#8b949e] hover:text-[#58a6ff] hover:underline hover:cursor-pointer -ml-[6px] shrink-0 hidden lg:block">938b12f</div>
             <div className="font-normal text-[#8b949e] hover:text-[#58a6ff] hover:underline hover:cursor-pointer -ml-[6px] shrink-0">6 days ago</div>
             <div className="flex items-center gap-x-1 group hover:cursor-pointer">
-              <History className="fill-[#ffffff] group-hover:fill-[#58a6ff] hover:cursor-pointer shrink-0" />
+              <History className="fill-white group-hover:fill-[#58a6ff] hover:cursor-pointer shrink-0" />
               <span className="group-hover:text-[#58a6ff] hidden sm:block">14</span>
+              <span className="group-hover:text-[#58a6ff] hidden lg:block font-normal text-[#8b949e]">commits</span>
             </div>
           </div>
         </div>
@@ -177,7 +263,7 @@ const Code = () => {
         ) : (
           <div className="flex flex-col text-[#8b949e]">
             {repoCode.map((file, idx) => (
-              <div key={file.id} className={clsx('flex items-center justify-between px-[3px] py-[8px] hover:bg-[#161b22]', [idx !== repoCode.length - 1 && 'border-b border-gray-700'])}>
+              <div key={file.id} className={clsx('grid grid-flow-col grid-cols-2 md:grid-cols-3 px-[3px] py-[8px] hover:bg-[#161b22]', [idx !== repoCode.length - 1 && 'border-b border-gray-800'])}>
                 <div className="flex gap-x-3 text-[#f0f6fc] pl-[16px]">
                   {file.isDirectory ? (
                     <div>
@@ -188,9 +274,10 @@ const Code = () => {
                       <File className="fill-[#8b949e] shrink-0" />
                     </div>
                   )}
-                  <span className="hover:text-[#58a6ff] hover:underline hover:cursor-pointer">{file.name}</span>
+                  <span className="hover:text-[#58a6ff] hover:underline hover:cursor-pointer shrink-0 truncate">{file.name}</span>
                 </div>
-                <div className="pr-[16px] shrink-0">{file.updated}</div>
+                <span className="hidden md:block hover:text-[#58a6ff] hover:underline hover:cursor-pointer shrink-0 truncate">{file.commitMessage}</span>
+                <div className="pr-[16px] justify-end shrink-0 truncate text-end">{file.updated}</div>
               </div>
             ))}
           </div>

@@ -119,7 +119,7 @@ const RepoNav = () => {
     },
   ];
   return (
-    <div className="bg-[#0d1117] w-full text-[#f0f6fc] px-[10px] pb-[10px] pt-[6px] flex border-b border-gray-600/60 relative">
+    <div className="bg-[#0d1117] w-full text-[#c9d1d9] px-[10px] md:px-[15px] xl:px-[20px] pb-[10px] pt-[6px] md:pt-[12px] flex border-b border-gray-600/60 relative">
       <div className="flex w-full justify-between items-center">
         <div className="px-[5px] flex gap-x-3 overflow-hidden text-sm">
           {navItems.map((item) => (
